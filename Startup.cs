@@ -1,8 +1,9 @@
 ﻿using Identity.Data.Context;
 using Identity.Data.Repositories;
 using Identity.Domain.Interfaces;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Owin;
@@ -13,7 +14,6 @@ namespace Identity
 {
     public class Startup
     {
-
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -25,7 +25,6 @@ namespace Identity
         {
             //services.AddDbContext<DbContexto>(options =>
             // options.UseSqlServer(Configuration.GetConnectionString("Connect")));
-
 
             //Serviço para login
             services.AddIdentity<IdentityUser, IdentityRole>()
@@ -44,9 +43,12 @@ namespace Identity
 
             });
 
+            services.AddScoped<IFuncionario, FuncionarioRepository>();
+        }
 
-            services.AddScoped<IDadosEmpresa, DadosEmpresaRepository>();
-            services.AddScoped<IDadosSocio, DadosSocioRepository>();
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {
+            
         }
     }
 }

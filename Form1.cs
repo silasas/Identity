@@ -1,34 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Mvc;
+﻿using Identity.Data.Context;
+using Identity.Data.Repositories;
+using Identity.Domain.Entities;
+using System;
 using System.Windows.Forms;
 
 namespace Identity
 {
     public partial class Form1 : Form
     {
-        
+        Startup startup { get; set; }
+
         public Form1()
         {
             InitializeComponent();
         }
 
-        [Authorize(Roles = "Admin")]
-        public void Auth()
-        {
-
-        }
-
-        [Authorize(Roles = "Admin")]
         private void Form1_Load(object sender, EventArgs e)
         {
+            Funcionario ifuncionario = new Funcionario();
+            ifuncionario.Codigo = 18192021;
+            ifuncionario.Nome = "Silas_1C";
 
+            using (var func = new FuncionarioRepository(new DbContexto()))
+            {
+                func.Adicionar(ifuncionario);
+                func.Commit();
+            }
         }
     }
 }
