@@ -19,7 +19,7 @@ namespace Identity
         {
             Funcionario ifuncionario = new Funcionario();
             ifuncionario.Codigo = 18192021;
-            ifuncionario.Nome = "Silas_1C";
+            ifuncionario.Nome = "Silas_1D";
 
             using (var func = new FuncionarioRepository(new DbContexto()))
             {

@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Windows.Forms;
 
@@ -11,14 +14,24 @@ namespace Identity
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            var host = BuildWebHost(args);
+            using (BuildWebHost(args))
+            {
+                try
+                {
+                    Application.Run(new Form1());
 
-            Application.Run(new Form1());
+                }
+                catch (Exception)
+                {
+
+                }
+            }
+           
         }
 
         public static IWebHost BuildWebHost(string[] args) =>

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Owin;
+using System.Windows.Forms;
 
 [assembly: OwinStartup(typeof(Identity.Startup))]
 
